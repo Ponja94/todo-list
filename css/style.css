@@ -24,3 +24,7 @@ body{
 .row {
     --bs-gutter-x: 0rem;
 }
+
+.form-check-label > input[type="checkbox"]:checked{
+    text-decoration: line-through;
+}
