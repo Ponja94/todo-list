@@ -1,18 +1,74 @@
 var listItem =[]; /* Lista de itens BD*/
 
+var enter = document.getElementById('writedText');
+var elementl = document.getElementById('toDoList');
+var btnAdd = document.getElementById('btnAdd');
+
+btnAdd.addEventListener('click', addNewItem)
+enter.addEventListener('keypress', addNewItem);
+elementl.addEventListener('click', excludeItem);
+elementl.addEventListener('click', excludeItem);
+
+
 /* Add a new item on list */
 function addNewItem(){ 
-	let itemWrited = document.getElementById('writedText').value;
+	const tecla = event.key;
+	const mouse = event.button;
+
+	if(tecla == 'Enter' || mouse == '0'){
+		let itemWrited = document.getElementById('writedText').value;
+		let listDataToWriteInContainer = '';
+
+
+		listItem.push(itemWrited);
+
+
+		for(i in listItem){
+
+			let newItem = listItem[i];
+
+
+			listDataToWriteInContainer += `<div class="container input-group d-inline" id="id${i}">
+	              <div class="row input-group-prepend mr-5"> <!-- -->
+	                <div class="col form-check input-group-text  justify-content-between">
+
+	                  <input class="float-left" type="checkbox" name="" id="flexCheck">
+	                  
+	                  <label class="form-check-label text-center" for="flexCheck" id="itemContent">${newItem}</label>
+
+	                  <i class="btn fa-solid fa-trash-can" id="${i}"></i>
+	                </div>
+	              </div> <!-- -->
+	            </div>`;
+		}
+		event.target.value=""; /* Limpa o valor digitado anteriormente*/
+		document.getElementById('toDoList').innerHTML = listDataToWriteInContainer;
+	}
+}
+
+/* Exclude item from list */
+
+
+function excludeItem(){
+
+	const elemento = event.target;
+
+	i = elemento.id; 
+
+	console.log(i);
+	console.log(listItem[i])
+	listItem.splice(i,1);
+	console.log(listItem)
+	atualizar();
+	
+}
+
+function atualizar(){
+	
 	let listDataToWriteInContainer = '';
-
-	listItem.push(itemWrited);
-
 	for(i in listItem){
-
 		let newItem = listItem[i];
-
-
-		listDataToWriteInContainer += `<div class="container input-group d-inline">
+		listDataToWriteInContainer += `<div class="container input-group d-inline" id="id${i}">
               <div class="row input-group-prepend mr-5"> <!-- -->
                 <div class="col form-check input-group-text  justify-content-between">
 
@@ -20,23 +76,14 @@ function addNewItem(){
                   
                   <label class="form-check-label text-center" for="flexCheck" id="itemContent">${newItem}</label>
 
-                  <i class="btn fa-solid fa-trash-can" onclick="excludeItem()"></i>
+                  <i class="btn fa-solid fa-trash-can" id="${i}"></i>
                 </div>
               </div> <!-- -->
             </div>`;
 	}
 
 	document.getElementById('toDoList').innerHTML = listDataToWriteInContainer;
-}
 
-/* Exclude item from list */
-
-function excludeItem(){
-
-	let toGetPositionList = document.getElementById('itemContent').value;
-
-	alert(toGetPositionList)
-	alert('foi');
 
 }
 
