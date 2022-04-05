@@ -1,0 +1,26 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    line-height: 1rem;
+}
+
+.card {
+
+    height: 40px;
+}
+
+.card-header {
+
+    border-bottom: 0;
+}
+
+.input-group-text {
+    background: white;
+}
+
+.row {
+    --bs-gutter-x: 0rem;
+}
